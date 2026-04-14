@@ -496,7 +496,6 @@ def generate_reading_local(session):
 
     # 動物占いメッセージ
     a_tpl = ANIMAL_MESSAGES.get(category, ANIMAL_MESSAGES["全体運"])
-    animal_key = f"animal_{{'恋愛':'love','仕事':'work','人間関係':'rel','金運':'money','健康':'health','全体運':'general'}.get(category, 'general')}"
     cat_map = {"恋愛": "animal_love", "仕事": "animal_work", "人間関係": "animal_rel",
                "金運": "animal_money", "健康": "animal_health", "全体運": "animal_general"}
     ak = cat_map.get(category, "animal_general")
