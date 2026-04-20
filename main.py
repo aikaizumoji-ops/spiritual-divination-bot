@@ -685,20 +685,10 @@ def handle_event(event):
             print(f"[DIVINATION OK] user={user_id[:8]} name={session['name']}", flush=True)
             session["step"] = "done"
 
-        elif step in ("generating", "done"):
-            reply(reply_token, {
-                "type": "text",
-                "text": "💎 もう一度鑑定する場合は\n「鑑定」とお送りください✨\n\n"
-                        "個別相談のご予約は\n「予約」と送ってください🌙",
-            })
-
         else:
-            reply(reply_token, {
-                "type": "text",
-                "text": "✨ ANASTA 簡易鑑定へようこそ💎\n\n"
-                        "「鑑定」と送るとタイプ診断を開始します\n"
-                        "「予約」で個別相談のご予約ができます🌙",
-            })
+            # 「鑑定」「予約」などのキーワードや鑑定フロー中以外は
+            # 自動返信せず、手動対応に委ねる
+            print(f"[MANUAL REPLY PENDING] user={user_id[:8]} step={step} text={text[:30]!r}", flush=True)
 
     elif event_type == "postback":
         session = get_session(user_id)
